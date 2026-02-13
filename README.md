@@ -1,87 +1,114 @@
-# 🗣️ Nlp Sentiment Analyzer
+# NLP Sentiment Analyzer
 
-> Professional project by Gabriel Demetrios Lafis
-
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![Flask](https://img.shields.io/badge/Flask-3.0-000000.svg)](https://img.shields.io/badge/)
-[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![scikit--learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://img.shields.io/badge/)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-2.0+-000000.svg)](https://flask.palletsprojects.com/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-F7931E.svg)](https://scikit-learn.org/)
+[![TextBlob](https://img.shields.io/badge/TextBlob-0.17+-4B8BBE.svg)](https://textblob.readthedocs.io/)
+[![NLTK](https://img.shields.io/badge/NLTK-3.8+-154F5B.svg)](https://www.nltk.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[English](#english) | [Português](#português)
+[Portugues](#portugues) | [English](#english)
+
+---
+
+## Portugues
+
+### Visao Geral
+
+Aplicacao web em Python/Flask para analise de sentimento de textos em ingles. Oferece dois metodos de analise:
+
+- **TextBlob**: analise rapida baseada em lexico, retorna polaridade (-1 a 1)
+- **Modelo customizado**: TF-IDF + Regressao Logistica treinado em dados de exemplo, retorna classificacao com probabilidade
+
+A interface web permite analise de texto individual ou em lote.
+
+### Arquitetura
+
+```mermaid
+graph LR
+    A[Entrada do Usuario] --> B[Flask Web UI]
+    B --> C{Modelo treinado?}
+    C -->|Sim| D[TF-IDF + Regressao Logistica]
+    C -->|Nao| E[Analise TextBlob]
+    D --> F[Resultado: sentimento + probabilidade]
+    E --> G[Resultado: sentimento + polaridade]
+```
+
+### Como executar
+
+```bash
+# Clonar o repositorio
+git clone https://github.com/galafis/NLP-Sentiment-Analyzer.git
+cd NLP-Sentiment-Analyzer
+
+# Criar e ativar ambiente virtual
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Instalar dependencias
+pip install -r requirements.txt
+
+# Executar a aplicacao
+python sentiment_analyzer.py
+```
+
+A aplicacao treina o modelo com dados de exemplo, salva o modelo e inicia o servidor web em `http://localhost:5000`.
+
+### Estrutura do Projeto
+
+```
+NLP-Sentiment-Analyzer/
+├── tests/
+│   ├── __init__.py
+│   └── test_main.py
+├── sentiment_analyzer.py   # Codigo fonte principal (~360 linhas)
+├── requirements.txt
+├── LICENSE
+└── README.md
+```
+
+### Stack Tecnologica
+
+| Tecnologia | Funcao |
+|------------|--------|
+| Python | Linguagem principal |
+| Flask | Servidor web e interface |
+| TextBlob | Analise de sentimento por lexico |
+| scikit-learn | TF-IDF + Regressao Logistica |
+| NLTK | Tokenizacao e stopwords |
+
+### Limitacoes
+
+- Analise apenas em ingles (stopwords em ingles hardcoded)
+- Dados de treinamento limitados (10 exemplos)
+- Modelo simples (Regressao Logistica linear)
 
 ---
 
 ## English
 
-### 🎯 Overview
+### Overview
 
-**Nlp Sentiment Analyzer** is a production-grade Python application that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
+Python/Flask web application for sentiment analysis of English text. Provides two analysis methods:
 
-The codebase comprises **365 lines** of source code organized across **1 modules**, following industry best practices for maintainability, scalability, and code quality.
+- **TextBlob**: fast lexicon-based analysis, returns polarity (-1 to 1)
+- **Custom model**: TF-IDF + Logistic Regression trained on sample data, returns classification with probability
 
-### ✨ Key Features
+The web interface supports single and batch text analysis.
 
-- **🗣️ Text Processing**: Tokenization, stemming, and lemmatization
-- **📊 Sentiment Analysis**: Multi-language sentiment classification
-- **🔍 Named Entity Recognition**: Entity extraction and classification
-- **📈 Text Analytics**: TF-IDF, word embeddings, and topic modeling
-- **🏗️ Object-Oriented**: 1 core classes with clean architecture
-
-### 🏗️ Architecture
+### Architecture
 
 ```mermaid
-graph TB
-    subgraph Client["🖥️ Client Layer"]
-        A[REST API Client]
-        B[Swagger UI]
-    end
-    
-    subgraph API["⚡ API Layer"]
-        C[Authentication & Rate Limiting]
-        D[Request Validation]
-        E[API Endpoints]
-    end
-    
-    subgraph ML["🤖 ML Engine"]
-        F[Feature Engineering]
-        G[Model Training]
-        H[Prediction Service]
-        I[Model Registry]
-    end
-    
-    subgraph Data["💾 Data Layer"]
-        J[(Database)]
-        K[Cache Layer]
-        L[Data Pipeline]
-    end
-    
-    A --> C
-    B --> C
-    C --> D --> E
-    E --> H
-    E --> J
-    H --> F --> G
-    G --> I
-    I --> H
-    E --> K
-    L --> J
-    
-    style Client fill:#e1f5fe
-    style API fill:#f3e5f5
-    style ML fill:#e8f5e9
-    style Data fill:#fff3e0
+graph LR
+    A[User Input] --> B[Flask Web UI]
+    B --> C{Model trained?}
+    C -->|Yes| D[TF-IDF + Logistic Regression]
+    C -->|No| E[TextBlob Analysis]
+    D --> F[Result: sentiment + probability]
+    E --> G[Result: sentiment + polarity]
 ```
 
-### 🚀 Quick Start
-
-#### Prerequisites
-
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
+### How to Run
 
 ```bash
 # Clone the repository
@@ -90,187 +117,54 @@ cd NLP-Sentiment-Analyzer
 
 # Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-```
 
-#### Running
-
-```bash
 # Run the application
-python src/main.py
+python sentiment_analyzer.py
 ```
 
-### 📁 Project Structure
+The application trains the model on sample data, saves it, and starts the web server at `http://localhost:5000`.
+
+### Project Structure
 
 ```
 NLP-Sentiment-Analyzer/
-├── tests/         # Test suite
+├── tests/
 │   ├── __init__.py
 │   └── test_main.py
-├── LICENSE
-├── README.md
+├── sentiment_analyzer.py   # Main source file (~360 lines)
 ├── requirements.txt
-└── sentiment_analyzer.py
+├── LICENSE
+└── README.md
 ```
 
-### 🛠️ Tech Stack
+### Tech Stack
 
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **Flask** | Lightweight web framework | Framework |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **scikit-learn** | Machine learning library | Framework |
+| Technology | Role |
+|------------|------|
+| Python | Core language |
+| Flask | Web server and UI |
+| TextBlob | Lexicon-based sentiment analysis |
+| scikit-learn | TF-IDF + Logistic Regression |
+| NLTK | Tokenization and stopwords |
 
-### 🤝 Contributing
+### Limitations
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+- English only (hardcoded English stopwords)
+- Limited training data (10 examples)
+- Simple model (linear Logistic Regression)
 
 ---
 
-## Português
-
-### 🎯 Visão Geral
-
-**Nlp Sentiment Analyzer** é uma aplicação Python de nível profissional que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
-
-A base de código compreende **365 linhas** de código-fonte organizadas em **1 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **🗣️ Text Processing**: Tokenization, stemming, and lemmatization
-- **📊 Sentiment Analysis**: Multi-language sentiment classification
-- **🔍 Named Entity Recognition**: Entity extraction and classification
-- **📈 Text Analytics**: TF-IDF, word embeddings, and topic modeling
-- **🏗️ Object-Oriented**: 1 core classes with clean architecture
-
-### 🏗️ Arquitetura
-
-```mermaid
-graph TB
-    subgraph Client["🖥️ Client Layer"]
-        A[REST API Client]
-        B[Swagger UI]
-    end
-    
-    subgraph API["⚡ API Layer"]
-        C[Authentication & Rate Limiting]
-        D[Request Validation]
-        E[API Endpoints]
-    end
-    
-    subgraph ML["🤖 ML Engine"]
-        F[Feature Engineering]
-        G[Model Training]
-        H[Prediction Service]
-        I[Model Registry]
-    end
-    
-    subgraph Data["💾 Data Layer"]
-        J[(Database)]
-        K[Cache Layer]
-        L[Data Pipeline]
-    end
-    
-    A --> C
-    B --> C
-    C --> D --> E
-    E --> H
-    E --> J
-    H --> F --> G
-    G --> I
-    I --> H
-    E --> K
-    L --> J
-    
-    style Client fill:#e1f5fe
-    style API fill:#f3e5f5
-    style ML fill:#e8f5e9
-    style Data fill:#fff3e0
-```
-
-### 🚀 Início Rápido
-
-#### Prerequisites
-
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/galafis/NLP-Sentiment-Analyzer.git
-cd NLP-Sentiment-Analyzer
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python src/main.py
-```
-
-### 📁 Estrutura do Projeto
-
-```
-NLP-Sentiment-Analyzer/
-├── tests/         # Test suite
-│   ├── __init__.py
-│   └── test_main.py
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── sentiment_analyzer.py
-```
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **Flask** | Lightweight web framework | Framework |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
+### Author
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
 - LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+
+### License
+
+MIT License - see [LICENSE](LICENSE) for details.
