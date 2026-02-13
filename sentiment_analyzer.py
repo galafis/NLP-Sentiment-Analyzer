@@ -5,8 +5,6 @@ Advanced sentiment analysis system with multiple models and web interface.
 """
 
 from flask import Flask, request, jsonify, render_template_string
-import pandas as pd
-import numpy as np
 from textblob import TextBlob
 import re
 import nltk
@@ -14,7 +12,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
 import pickle
 import warnings
 warnings.filterwarnings('ignore')
@@ -133,7 +130,7 @@ class SentimentAnalyzer:
             self.model = model_data['model']
             self.trained = True
             return True
-        except:
+        except Exception:
             return False
 
 # Flask Web Application
@@ -287,12 +284,18 @@ def analyze():
     if not text:
         return jsonify({'error': 'No text provided'}), 400
     
-    sentiment, confidence = analyzer.textblob_sentiment(text)
-    
-    return jsonify({
-        'sentiment': sentiment,
-        'confidence': confidence
-    })
+    if analyzer.trained:
+        sentiment, confidence = analyzer.predict_sentiment(text)
+        return jsonify({
+            'sentiment': sentiment,
+            'confidence': confidence
+        })
+    else:
+        sentiment, polarity = analyzer.textblob_sentiment(text)
+        return jsonify({
+            'sentiment': sentiment,
+            'polarity': polarity
+        })
 
 @app.route('/analyze_batch', methods=['POST'])
 def analyze_batch():
@@ -358,7 +361,7 @@ def main():
     
     print("\nStarting web server...")
     print("Open http://localhost:5000 in your browser")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)
 
 if __name__ == "__main__":
     main()
