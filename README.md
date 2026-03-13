@@ -6,6 +6,7 @@
 [![TextBlob](https://img.shields.io/badge/TextBlob-0.17+-4B8BBE.svg)](https://textblob.readthedocs.io/)
 [![NLTK](https://img.shields.io/badge/NLTK-3.8+-154F5B.svg)](https://www.nltk.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker)](Dockerfile)
 
 [Portugues](#portugues) | [English](#english)
 
