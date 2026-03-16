@@ -2,17 +2,12 @@
 
 <div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-2.0+-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.0+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![NLTK](https://img.shields.io/badge/NLTK-3.8+-154F5B?style=for-the-badge&logo=python&logoColor=white)](https://www.nltk.org/)
-[![TextBlob](https://img.shields.io/badge/TextBlob-0.17+-4B8BBE?style=for-the-badge&logo=python&logoColor=white)](https://textblob.readthedocs.io/)
-
-[![Tests](https://img.shields.io/badge/Tests-Pytest-green?style=flat-square&logo=pytest)](tests/)
-[![Coverage](https://img.shields.io/badge/Coverage-90%25-brightgreen?style=flat-square)](tests/)
-[![Code Style](https://img.shields.io/badge/Code%20Style-PEP8-blue?style=flat-square)](https://pep8.org/)
-[![Docker Ready](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white)](Dockerfile)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![NLTK](https://img.shields.io/badge/NLTK-154f5b?style=for-the-badge&logo=python&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![License-MIT](https://img.shields.io/badge/License--MIT-yellow?style=for-the-badge)
 
 </div>
 
